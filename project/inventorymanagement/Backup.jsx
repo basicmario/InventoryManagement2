@@ -5,7 +5,7 @@ import './sections.css'
 
 function Backup() {
 
-  const URL = "http://localhost:3000";
+  const URL = "https://inventory-management-server-yw7k.onrender.com";
   
   const [ datastore, setdata] = useState(null);
 

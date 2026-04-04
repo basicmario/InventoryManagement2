@@ -4,7 +4,7 @@ import '../sections.css'
 
 function Inventorycontrol() {
 
-  const URL = "http://localhost:3000";
+  const URL = "https://inventory-management-server-yw7k.onrender.com";
 
   const [errorbox, seterrorbox] = useState(false);
   const [success, setsuccess] = useState(false);
