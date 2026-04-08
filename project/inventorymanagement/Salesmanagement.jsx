@@ -66,7 +66,7 @@ function Salesmanagement() {
     seterror(null);
 
     try {
-      const response = await fetch("https://inventory-management-server-yw7k.onrender.com/updateinv", {
+      const response = await fetch("http://localhost:3000/updateinv", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

@@ -52,6 +52,33 @@ app.post('/updateinv', async (req, res) => {
 
 
 
+
+
+app.post('/addinv', async (req, res) => {
+    const { prodid, quantityadded: quant } = req.body;
+
+    const { data, error } = await supabase
+        .from('products')
+        .select()
+        .eq('id', prodid);
+
+    if (error) return res.status(500).json({ message: "Database error: " + error.message });
+    if (!data[0]) return res.status(404).json({ message: "Product not found" });
+
+    const product = data[0];
+    const newQuantity = product.stock_quantity + Number(quant);
+
+    const { error: updateError } = await supabase
+        .from('products')
+        .update({ stock_quantity: newQuantity })
+        .eq('id', prodid);
+
+    if (updateError) return res.status(500).json({ message: "Update failed: " + updateError.message });
+
+    res.json({ message: "Stock added successfully", product: product });
+});
+
+
 app.listen(port, ()=>{
     console.log(`Server running on port http://localhost:${port}`);
 })

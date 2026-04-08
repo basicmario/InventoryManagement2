@@ -6,13 +6,17 @@ import './App.css'
 function Webpage() {
   const navigate = useNavigate();
   const [clicked, setClicked] = useState(false);
+  const [error, setError] = useState(false);
 
   const getinfo = () => {
     const user = document.getElementById("userbox").value;
     const pass = document.getElementById("passbox").value;
 
     if (user === "admin" && pass === "123") {
+      setError(false);
       navigate("/Dashboard");
+    } else {
+      setError(true);
     }
   };
 
@@ -26,7 +30,7 @@ function Webpage() {
           </div>
           <div className="navbuttons">
             <button onClick={() => navigate("/")}>Home</button>
-            <button onClick={() => setClicked(!clicked)}>Login</button>
+            <button onClick={() => { setClicked(!clicked); setError(false); }}>Login</button>
             <button onClick={() => navigate("/about")}>About</button>
           </div>
         </div>
@@ -36,12 +40,29 @@ function Webpage() {
             <div className="innerlogin">
               <div className="section">
                 <p>Username</p>
-                <input id='userbox' type='text' placeholder='Enter the username' />
+                <input
+                  id='userbox'
+                  type='text'
+                  placeholder='Enter the username'
+                  onChange={() => setError(false)}
+                />
               </div>
               <div className="section">
                 <p>Password</p>
-                <input id='passbox' type='password' placeholder='Enter the password' />
+                <input
+                  id='passbox'
+                  type='password'
+                  placeholder='Enter the password'
+                  onChange={() => setError(false)}
+                />
               </div>
+
+              {error && (
+                <div className="errormsg">
+                  <p>⚠️ Invalid username or password. Please try again.</p>
+                </div>
+              )}
+
               <div className="loginbtn">
                 <button onClick={getinfo}>Submit</button>
               </div>

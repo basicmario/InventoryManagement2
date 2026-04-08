@@ -304,3 +304,21 @@
   object-fit: contain;
   margin-bottom: 10px;
 }
+
+
+
+
+
+.errormsg {
+  background-color: #ffe0e0;
+  border: 1px solid #f44336;
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin-top: 8px;
+}
+
+.errormsg p {
+  color: #c0392b;
+  font-size: 14px;
+  margin: 0;
+}

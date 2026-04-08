@@ -119,7 +119,7 @@ function Report() {
 
 
       <div className="reportnavbar">
-        <button onClick={()=>setdisplay("Generate")}>Generate receipt</button>
+        <button onClick={()=>setdisplay("Generate")}>Generate report</button>
         <button onClick={()=>setdisplay("Patterns")}>Analyse patterns</button>
       </div>
 
