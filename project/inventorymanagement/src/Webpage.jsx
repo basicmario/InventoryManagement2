@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Logo from './assets/Logo.png'
 import './App.css'
 
 function Webpage() {
@@ -19,7 +20,10 @@ function Webpage() {
     <>
       <div className="mainbox">
         <div className="navbar">
-          <p>Inventory System</p>
+          <div className="nav-brand">
+            <img src={Logo} alt="Logo" className="nav-logo" />
+            <p>Inventory System</p>
+          </div>
           <div className="navbuttons">
             <button onClick={() => navigate("/")}>Home</button>
             <button onClick={() => setClicked(!clicked)}>Login</button>
