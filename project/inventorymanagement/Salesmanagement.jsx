@@ -8,6 +8,8 @@ function Salesmanagement() {
   const [setter, setsetter] = useState();
   const [values, setvalues] = useState(null);
   const [processvalues, setprocessvalues] = useState([]);
+  const [loading, setloading] = useState(false);
+  const [error, seterror] = useState(null);
 
   var content;
 
@@ -24,16 +26,27 @@ function Salesmanagement() {
   const checkdata = async () => {
     const value = document.getElementById("barcodereader").value;
 
+    if(!value){
+      seterror("Please enter a product ID");
+      return;
+    }
+
+    setloading(true);
+    seterror(null);
+
     const { data, error } = await supabase
       .from('products')
       .select()
       .eq("id", value);
 
+    setloading(false);
+
     if (error) {
-      console.log(error);
+      seterror("Database error: " + error.message);
     } else {
       if (!data[0]) {
         setvalues(null);
+        seterror("No product found with that ID");
         return;
       }
       setvalues(data[0]);
@@ -44,49 +57,43 @@ function Salesmanagement() {
     const value = document.getElementById("barcodereader").value;
     const value2 = document.getElementById("quantityreader").value;
 
-    const { data, error } = await supabase
-      .from('products')
-      .select()
-      .eq("id", value)
-
-    if (error) {
-      console.log(error);
+    if(!value || !value2){
+      seterror("Please enter both a product ID and quantity");
       return;
     }
 
-    if (data[0] && data[0].stock_quantity >= value2) {
+    setloading(true);
+    seterror(null);
 
-      // ✅ Call /updateinv to decrease stock in Supabase
-      try {
-        const response = await fetch("http://localhost:3000/updateinv", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            prodid: value,
-            quantitysold: Number(value2)
-          })
-        });
+    try {
+      const response = await fetch("http://localhost:3000/updateinv", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          prodid: value,
+          quantitysold: Number(value2)
+        })
+      });
 
-        const result = await response.json();
-        console.log("Server response:", result.message);
+      const result = await response.json();
+      setloading(false);
 
-        // ✅ Only add to list if update was successful
-        let pro = {
-          item: data[0].productname,
-          quant: value2,
-          price: data[0].price
-        }
-        setprocessvalues(prev => [...prev, pro]);
-
-      } catch (err) {
-        console.log("Error calling /updateinv:", err);
+      if (!response.ok) {
+        seterror(result.message);
+        return;
       }
 
-    } else {
-      console.log("Product not found or not enough stock");
-      alert("Product not found or insufficient stock!");
+      let pro = {
+        item: result.product.name,
+        quant: value2,
+        price: result.product.price
+      }
+      setprocessvalues(prev => [...prev, pro]);
+
+    } catch (err) {
+      setloading(false);
+      seterror("Could not connect to server. Is it running on port 3000?");
+      console.log("Fetch error:", err);
     }
   }
 
@@ -116,6 +123,8 @@ function Salesmanagement() {
       <div className="scanbox">
         <p>Scan The Bar Code (Enter product ID#)</p>
         <input id='barcodereader' type='text' />
+        {error && <p style={{color:"red"}}>{error}</p>}
+        {loading && <p>Loading...</p>}
         {values != null ?
           <div className="displaydiv">
             <p>Name: {values.productname}</p>
@@ -123,7 +132,7 @@ function Salesmanagement() {
             <p>Stock Quantity: {values.stock_quantity}</p>
           </div>
           :
-          <p>Product not found</p>
+          null
         }
         <button onClick={() => checkdata()}>Submit</button>
       </div>;
@@ -141,6 +150,9 @@ function Salesmanagement() {
             <input id='quantityreader' type='number' />
           </div>
         </div>
+
+        {error && <p style={{color:"red"}}>{error}</p>}
+        {loading && <p>Loading...</p>}
 
         {processvalues?.length > 0 ?
           processvalues.map((val, index) => (
