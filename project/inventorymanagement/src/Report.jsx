@@ -75,7 +75,7 @@ function Report() {
           <div className="displaying">
             <p>Date: {date}</p>
             <p>Time: {time}</p>
-            <p>Store Name: Walmart</p>
+            <p>Store Name: Mars Wholesale</p>
             
             <p>Items name: {itemlist}</p>
             <p>Total amount: ${total}</p>

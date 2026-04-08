@@ -1,25 +1,20 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
 .mainbox {
   height: 100vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
-  background-color: rgb(137, 228, 255);
+  background-color: rgb(235, 245, 255);
 }
 
 .mainbox p {
   color: rgb(0, 0, 0);
   font-weight: bold;
   font-family: Arial;
-}
-
-
-.navbuttons {
-
-  height: 100%;
-  width: 50%;
-  display: flex;
-  justify-content:flex-end;
-  align-items: center;
 }
 
 .navbar {
@@ -33,60 +28,86 @@
   color: white;
 }
 
-.navbar button {
-  height: 50%;
-  width: 10%;
-  border: 1px solid rgb(203, 203, 203);
-  border-radius: 15px;
-  cursor: pointer;
-  color: black;
+.navbar p {
+  color: white;
+  font-size: 20px;
   font-family: Arial;
 }
-
 
 .title p {
   color: white;
 }
 
-.navbar button:hover {
-  background-color: grey;
+.navbuttons {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  padding-right: 20px;
 }
 
+.navbar button {
+  height: 50%;
+  width: 10%;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 15px;
+  cursor: pointer;
+  color: white;
+  background-color: transparent;
+  font-family: Arial;
+  font-weight: bold;
+}
+
+.navbar button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
 
 .herobox {
-  color: black;
   margin-top: 10%;
-  height: 200px;
+  height: 250px;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgb(137, 228, 255);
+  background-color: rgb(235, 245, 255);
+}
+
+.innerhero {
+  text-align: center;
+  padding: 0 20px;
+}
+
+.innerhero h1 {
+  color: rgb(30, 60, 160);
+  font-family: Arial;
+  margin-bottom: 10px;
 }
 
 .innerhero p {
-  color: rgb(0, 0, 0);
-  font-size: 20px;
+  color: rgb(40, 40, 40);
+  font-size: 18px;
   font-family: Arial;
 }
 
 .herobtn button {
-  margin-top: 10px;
-  height: 30px;
-  width: 70px;
-  border: 1px solid rgb(203, 203, 203);
+  margin-top: 15px;
+  height: 38px;
+  width: 110px;
+  border: none;
   border-radius: 15px;
   cursor: pointer;
-  color: black;
+  color: white;
+  background-color: rgb(60, 96, 216);
   font-family: Arial;
+  font-weight: bold;
 }
-
 
 .herobtn button:hover {
-  background-color: grey;
+  background-color: rgb(40, 72, 180);
 }
-
 
 .loginbox {
   height: 400px;
@@ -96,9 +117,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgb(180, 220, 255);
+  background-color: rgb(235, 245, 255);
+  border-top: 1px solid rgb(210, 225, 245);
 }
-
 
 .innerlogin {
   display: flex;
@@ -107,8 +128,15 @@
   align-items: center;
 }
 
+.innerlogin h2 {
+  color: rgb(30, 60, 160);
+  font-family: Arial;
+  margin-bottom: 10px;
+}
+
 .loginbox p {
-  color: black;
+  color: rgb(40, 40, 40);
+  font-family: Arial;
 }
 
 .logintitle {
@@ -120,9 +148,7 @@
   align-items: center;
 }
 
-
 .section {
-  
   width: 100%;
   height: 20%;
   display: flex;
@@ -135,7 +161,13 @@
   width: 250px;
   padding: 10px;
   border-radius: 15px;
-  border: 1px solid rgb(201, 201, 201);
+  border: 1px solid rgb(180, 200, 230);
+  background-color: rgb(245, 250, 255);
+  outline: none;
+}
+
+.section input:focus {
+  border: 1px solid rgb(60, 96, 216);
 }
 
 .loginbtn {
@@ -144,34 +176,28 @@
 
 .loginbtn button {
   height: 40px;
-  width: 70px;
-  border: 1px solid rgb(203, 203, 203);
+  width: 90px;
+  border: none;
   border-radius: 15px;
   cursor: pointer;
-  color: black;
+  color: white;
+  background-color: rgb(60, 96, 216);
   font-family: Arial;
+  font-weight: bold;
 }
 
 .loginbtn button:hover {
-  background-color: rgb(110, 110, 110);
+  background-color: rgb(40, 72, 180);
 }
 
-*{
-  padding: 0;
-  margin: 0;
-}
-
-
+/* DASHBOARD */
 
 .dashboard {
-  
   display: flex;
   height: 100vh;
   width: 100vw;
-  overflow-y:hidden;
-  
+  overflow-y: hidden;
 }
-
 
 .sidebar {
   display: flex;
@@ -190,19 +216,22 @@
   border-radius: 15px;
   border: 1px solid rgb(187, 187, 187);
   padding: 5px;
+  cursor: pointer;
+  font-family: Arial;
+}
+
+.sidebar button:hover {
+  background-color: rgb(210, 230, 255);
 }
 
 .sidebar button:focus {
   background-color: rgb(181, 220, 255);
-  width: 75%;
-  border-radius: 15px;
-  border: 1px solid rgb(101, 119, 124);
-  padding: 5px;
+  border: 1px solid rgb(60, 96, 216);
 }
 
 .mainbo {
   height: 100%;
   display: flex;
-  background-color: red;
+  background-color: rgb(235, 245, 255);
   width: 100%;
 }

@@ -5,6 +5,7 @@ import Backup from '../Backup';
 import Inventorycontrol from './Inventorycontrol';
 import Report from './Report'
 import Usermanagement from './Usermanagement'
+import About from './About';
 
 import './App.css'
 import Dashboard from '../Dashboard'
@@ -21,7 +22,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Webpage/>}/>
         <Route path='/Dashboard/*' element={<Dashboard/>}/>
-        
+        <Route path='/About' element={<About/>}/>
       </Routes>
     </>
   )
