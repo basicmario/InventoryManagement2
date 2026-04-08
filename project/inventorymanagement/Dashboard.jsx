@@ -35,6 +35,8 @@ function Dashboard() {
     <>
         <div className="dashboard">
           <div className="sidebar">
+
+            <p className='storetitle'> Mars <br></br>Wholesale</p>
             <button onClick={()=>clicked("salesmanagement")}>Sales Management</button>
             <button onClick={()=>clicked("inventorycontrol")}>Inventory Control</button>
             <button onClick={()=>clicked("report")}>Report & Analysis</button>
