@@ -76,6 +76,7 @@ function Salesmanagement() {
       });
 
       const result = await response.json();
+      console.log("the result", result);
       setloading(false);
 
       if (!response.ok) {
@@ -84,7 +85,7 @@ function Salesmanagement() {
       }
 
       let pro = {
-        item: result.product.name,
+        item: result.product.productname,
         quant: value2,
         price: result.product.price
       }
