@@ -296,3 +296,11 @@
   width: auto;
   object-fit: contain;
 }
+
+
+.sidebar-logo {
+  width: 120px;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
